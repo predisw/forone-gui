@@ -1,26 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.predisw</groupId>
-        <artifactId>predisw-baseline</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <groupId>com.predisw</groupId>
+    <artifactId>predisw-baseline</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
 
-    <groupId>com.predisw.finance</groupId>
-    <artifactId>forone-gui</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+  <groupId>com.predisw.finance</groupId>
+  <artifactId>forone-gui</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
 
-    <modules>
-        <module>access</module>
-        <module>app</module>
-    </modules>
+  <modules>
+    <module>web</module>
+    <module>app</module>
+    <module>business</module>
+  </modules>
 
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>com.predisw.finance</groupId>
+        <artifactId>app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.predisw.finance</groupId>
+        <artifactId>business</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+
+
+      <dependency>
+        <groupId>com.predisw.finance</groupId>
+        <artifactId>forone-datatype</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.predisw.common</groupId>
+        <artifactId>predisw-httpclient-lib</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>com.predisw.common</groupId>
+        <artifactId>predisw-tools-lib</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>${servlet-api.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <version>${spring-boot.version}</version>
+        <optional>true</optional>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
 
 
 </project>

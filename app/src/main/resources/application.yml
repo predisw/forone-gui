@@ -1,31 +1,39 @@
 server:
-  port: 8080
+  port: 80
   servlet:
-    contextPath: /
+    context-path: /
   undertow:
     io-threads: 20          # default value is 1 thread per CPU core
     worker-threads: 100     # default value is 8 threads per CPU core
-    max-http-post-size: 2097152     # 2M as weblogic default value
+    max-http-post-size: 2097152     # 2M as webLogic default value
 
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost/for_one?serverTimezone=UTC
-    username: fund
-    password: fund@forOne
-    driver-class-name: com.mysql.jdbc.Driver
-    type: com.zaxxer.hikari.HikariDataSource
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        format_sql: true
-  http:
-    converters:
-      preferred-json-mapper: gson
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
+
+# spring-boot-devtools disables the caching options by default
+# refer to https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-devtools
+
+# Auto-refresh (or auto-load) refer to UI reload at browser to see static content changes
+# Auto-restart is referred to reloading the server side code and configurations followed by server restart
+  devtools:
+    livereload:
+      enabled : true   # Auto-refresh
+    restart:
+      enabled: true  # Auto-restart
+
+#  By default, changing resources in below does not trigger a restart but does trigger a live reload.
+#  /META-INF/maven
+#  /META-INF/resources
+#  /resources
+#  /static
+#  /public
+#  /templates
+
 
 
 # show the sql variable in log
