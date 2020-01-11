@@ -9,13 +9,17 @@ server:
 
 
 spring:
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
+#  mvc:
+#    view:
+#      prefix: /
+#      suffix: .html
 
+  thymeleaf:
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
 
-# spring-boot-devtools disables the caching options by default
+  # spring-boot-devtools disables the caching options by default
 # refer to https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-devtools
 
 # Auto-refresh (or auto-load) refer to UI reload at browser to see static content changes
