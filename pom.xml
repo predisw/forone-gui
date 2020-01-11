@@ -23,6 +23,10 @@
   </modules>
 
 
+  <properties>
+    <bootstrap.version>4.2.1</bootstrap.version>
+  </properties>
+
 
   <dependencies>
     <dependency>
@@ -100,12 +104,19 @@
         <version>${spring-boot.version}</version>
       </dependency>
 
-
+      <!-- hot swapping, disable cache for template, enable live reload -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-devtools</artifactId>
         <version>${spring-boot.version}</version>
         <optional>true</optional>
+      </dependency>
+
+      <!-- Optional, for bootstrap -->
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>${bootstrap.version}</version>
       </dependency>
 
     </dependencies>
