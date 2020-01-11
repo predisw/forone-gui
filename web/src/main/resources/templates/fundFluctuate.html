@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <!-- 引入 ECharts 文件 -->
+  <script th:src="@{/js/echarts.min.js}"></script>
+</head>
+<body>
+
+  <div>
+    <p th:text="${description}"></p>
+    <div id="main" style="width: 800px;height:400px;"></div>
+
+  </div>
+
+
+  <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      option = {
+          title: {
+              text: '基金涨幅波动',
+              subtext: '/每月'
+          },
+          tooltip: {
+              trigger: 'axis'
+          },
+          legend: {
+              data: ['汇丰晋信恒生龙头指数A', '建信中证500指数增强A','华夏恒生ETF联接A']
+          },
+          toolbox: {
+              show: true,
+              orient: 'vertical',
+              left: 'right',
+              top: 'center',
+              feature: {
+                  dataZoom: {
+                      yAxisIndex: 'none'
+                  },
+                  dataView: {readOnly: false},
+                  magicType: {type: ['line', 'bar']},
+                  restore: {},
+                  saveAsImage: {}
+              }
+          },
+          xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: ["2019-04","2019-01","2019-02","2019-03","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01"]
+          },
+          yAxis: {
+              type: 'value',
+              axisLabel: {
+                  formatter: '{value}'
+              }
+          },
+          series: [
+              {
+                  name: '汇丰晋信恒生龙头指数A',
+                  type: 'line',
+                  data: [3.96,7.41,9.97,3.99,-6.31,6.17,2.32,1.21,0.76,2.36,-1.5,5.21,0.78],
+                  markPoint: {
+                      data: [
+                          {type: 'max', name: '最大值'},
+                          {type: 'min', name: '最小值'}
+                      ]
+                  }
+
+              },
+              {
+                  name: '建信中证500指数增强A',
+                  type: 'line',
+                  data: [-3.56,0.82,16.86,10.16,-5.95,1.85,-0.07,-0.77,1.23,0.44,-0.93,6.5,3.91],
+                  markPoint: {
+                      data: [
+                          {type: 'max', name: '最大值'},
+                          {type: 'min', name: '最小值'}
+                      ]
+                  }
+              },
+              {
+                  name: '华夏恒生ETF联接A',
+                  type: 'line',
+                  data: [2.06,6.5,1.98,2.05,-6.22,6.21,-2.34,-4.77,1.47,2.84,-2.16,6.18,1.22],
+                  markPoint: {
+                      data: [
+                          {type: 'max', name: '最大值'},
+                          {type: 'min', name: '最小值'}
+                      ]
+                  }
+
+              }
+          ]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+  </script>
+
+
+
+</body>
+</html>
+
+
