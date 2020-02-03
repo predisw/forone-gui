@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <!-- 引入 ECharts 文件 -->
   <script th:src="@{/js/echarts.min.js}"></script>
+  <script th:src="@{/js/echarts-fillin.js}"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 
@@ -19,7 +22,7 @@
       var myChart = echarts.init(document.getElementById('main'));
 
       // 指定图表的配置项和数据
-      option = {
+      chartTemplate = {
           title: {
               text: '基金涨幅波动',
               subtext: '/每月'
@@ -28,7 +31,7 @@
               trigger: 'axis'
           },
           legend: {
-              data: ['汇丰晋信恒生龙头指数A', '建信中证500指数增强A','华夏恒生ETF联接A']
+              data: []
           },
           toolbox: {
               show: true,
@@ -48,7 +51,7 @@
           xAxis: {
               type: 'category',
               boundaryGap: false,
-              data: ["2019-04","2019-01","2019-02","2019-03","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01"]
+              data: []
           },
           yAxis: {
               type: 'value',
@@ -56,47 +59,30 @@
                   formatter: '{value}'
               }
           },
-          series: [
-              {
-                  name: '汇丰晋信恒生龙头指数A',
-                  type: 'line',
-                  data: [3.96,7.41,9.97,3.99,-6.31,6.17,2.32,1.21,0.76,2.36,-1.5,5.21,0.78],
-                  markPoint: {
-                      data: [
-                          {type: 'max', name: '最大值'},
-                          {type: 'min', name: '最小值'}
-                      ]
-                  }
-
-              },
-              {
-                  name: '建信中证500指数增强A',
-                  type: 'line',
-                  data: [-3.56,0.82,16.86,10.16,-5.95,1.85,-0.07,-0.77,1.23,0.44,-0.93,6.5,3.91],
-                  markPoint: {
-                      data: [
-                          {type: 'max', name: '最大值'},
-                          {type: 'min', name: '最小值'}
-                      ]
-                  }
-              },
-              {
-                  name: '华夏恒生ETF联接A',
-                  type: 'line',
-                  data: [2.06,6.5,1.98,2.05,-6.22,6.21,-2.34,-4.77,1.47,2.84,-2.16,6.18,1.22],
-                  markPoint: {
-                      data: [
-                          {type: 'max', name: '最大值'},
-                          {type: 'min', name: '最小值'}
-                      ]
-                  }
-
-              }
-          ]
+          series: []
       };
 
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+
+    function getIndex(code){
+      return axios.get('http://localhost/'+code+'/month/last/12');
+    }
+
+
+    axios.all([getIndex('540012'), getIndex('000478'), getIndex('000071')])
+      .then(
+        axios.spread(function (index012, index478, index071) {
+          appendDataToChart(index012.data, chartTemplate);
+          appendDataToChart(index478.data, chartTemplate);
+          appendDataToChart(index071.data, chartTemplate);
+          myChart.setOption(chartTemplate);
+        })
+      )
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+
   </script>
 
 
