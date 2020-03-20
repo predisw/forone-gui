@@ -1,5 +1,5 @@
   function appendDataToChart(fundInfo, chartTemplate){
-    console.log(chartTemplate.legend.data)
+    console.log(fundInfo)
     chartTemplate.legend.data.push(fundInfo.fundName)
     chartTemplate.xAxis.data = fundInfo.time
 

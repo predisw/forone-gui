@@ -10,9 +10,16 @@ The spring devtools will detect the class path to check if there is any changes.
 Can press Ctrl+F9(Build Project) to trigger the classpath changed if the reload doesn't take effect.
 
 *Fund Code For Test*
-- 540012
-- 000478
-- 000071
+- 540012  龙头指数
+- 000478  middle 500
+- 000071   hk major
+
+-- 100032  bonus major
+-- 501029  bonus minor
+
+-- 501021  hk minor
+
+-- 003765  创业板
 
 {
 	"fundCode": "000071",
