@@ -17,7 +17,7 @@
 
   <div id="selector"  class="rightfloat" >
     <div id="query" class="searchBox">
-      <input v-model="fundCode" class="inputBox" placeholder="请输入基金代码" onkeypress="getFluctuate()">
+      <input v-model="fundCode" class="inputBox" placeholder="请输入基金代码" >
       <button class="searchBtn" onclick="getFluctuate()">添加</button>
 
     </div>
@@ -87,7 +87,7 @@
 
     if( !existingCodes.includes(vm.fundCode) ){
       axios
-        .get('http://localhost/'+vm.fundCode+'/month/last/12')
+        .get(vm.fundCode+'/month/last/12')
         .then(response => appendDataToChart(response.data, chartTemplate))
         .then(() => existingCodes.push(vm.fundCode))
         .then(() => myChart.setOption(chartTemplate))
