@@ -17,6 +17,7 @@
 
 
   <modules>
+    <module>webFlux</module>
     <module>web</module>
     <module>app</module>
     <module>business</module>
@@ -95,6 +96,13 @@
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
         <version>${gson.version}</version>
+      </dependency>
+
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-webflux</artifactId>
+        <version>${spring-boot.version}</version>
       </dependency>
 
 

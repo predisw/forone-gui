@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <!-- 引入 ECharts 文件 -->
+  <script th:src="@{/js/echarts.min.js}"></script>
+  <script th:src="@{/js/echarts-fillin.js}"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+  <div>
+    <p th:text="${description}"></p>
+    <div id="main" style="width: 800px;height:400px;"></div>
+
+  </div>
+
+
+  <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      chartTemplate = {
+          title: {
+              text: '基金涨幅波动',
+              subtext: '/每月'
+          },
+          tooltip: {
+              trigger: 'axis'
+          },
+          legend: {
+              data: []
+          },
+          toolbox: {
+              show: true,
+              orient: 'vertical',
+              left: 'right',
+              top: 'center',
+              feature: {
+                  dataZoom: {
+                      yAxisIndex: 'none'
+                  },
+                  dataView: {readOnly: false},
+                  magicType: {type: ['line', 'bar']},
+                  restore: {},
+                  saveAsImage: {}
+              }
+          },
+          xAxis: {
+              type: 'category',
+              boundaryGap: false,
+              data: []
+          },
+          yAxis: {
+              type: 'value',
+              axisLabel: {
+                  formatter: '{value}'
+              }
+          },
+          series: []
+      };
+
+
+    function getIndex(code){
+      return axios.get(code+'/month/last/12');
+    }
+
+
+    axios.all([getIndex('540012'), getIndex('000478'), getIndex('000071')])
+      .then(
+        axios.spread(function (index012, index478, index071) {
+          appendDataToChart(index012.data, chartTemplate);
+          appendDataToChart(index478.data, chartTemplate);
+          appendDataToChart(index071.data, chartTemplate);
+          myChart.setOption(chartTemplate);
+        })
+      )
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+      .finally(() => this.loading = false)
+
+  </script>
+
+
+
+</body>
+</html>
+
+

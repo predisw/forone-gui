@@ -14,4 +14,9 @@ public class CommonController {
         return "index";
     }
 
+    @RequestMapping("/health_check")
+    public String healthCheck(){
+        return "The service is running normally";
+    }
+
 }

@@ -10,7 +10,6 @@ public class FluctuateKVListByTime<T> extends FundBase {
 
     private List<Double> fluctuate;
 
-
     public List<T> getTime() {
         return time;
     }

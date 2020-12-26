@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class FluctuateContorller {
+public class FluctuateController {
 
     @Autowired
     @Qualifier("fluctuateFetcherByMonth")
@@ -28,13 +28,11 @@ public class FluctuateContorller {
         return "fundFluctuate";
     }
 
-
     @RequestMapping("/singleFundFl")
     public String getSingleFundFluctuateView(ModelMap model){
         model.addAttribute("description","Fund Fluctuate Status");
         return "singleFundFluctuate";
     }
-
 
     @ResponseBody
     @RequestMapping("/{fundCode}/month/last/{backwardMonthAmount}")

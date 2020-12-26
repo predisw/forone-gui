@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+
+.leftfloat {
+width:65%;
+height:500px;
+text-align:left; /*文字左对齐*/
+ float:left; /*浮动居左*/
+/*  clear:left; 不允许左侧存在浮动 */
+/* overflow:auto;*/ /*超出宽度部分隐藏*/
+ border:1px solid blue;
+ margin:10px;
+}
+
+.rightfloat {
+width:30%;
+height:500px;
+text-align:left; /*文字左对齐*/
+ float:left; /*浮动居左*/
+/*  clear:left; 不允许左侧存在浮动 */
+ overflow:auto; /*超出宽度部分隐藏*/
+ border:1px solid blue;
+ margin:10px;
+}
+
+/* 下面是搜索框样式 */
+.searchBox{
+    width: 99%;
+    height: 35px;
+    border: none;
+    outline: hidden;
+    border-radius: 2px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.inputBox{
+    border: 1px solid blue;
+    width: 80%;
+    height: 35px;
+    line-height: 35px;
+/*    outline: none;*/
+    padding-left: 5px;
+    /* 改变光标的颜色 */
+    caret-color:#008B8B;
+    font-size: 18px;
+}
+
+.searchBtn{
+    width: 17%;
+    height: 40px;
+    border: none;
+    position: absolute;
+    right: 0;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    background-color: cornflowerblue;
+}
+
+/* 鼠标滑过按钮时背景色改变 */
+.searchBtn:hover{
+    background-color: #497fdf;
+}
